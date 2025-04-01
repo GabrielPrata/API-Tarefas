@@ -7,5 +7,6 @@ namespace Tarefas.Application.Interfaces
     public interface ITarefaService
     {
         Task SaveNewTarefa(TarefaDTO tarefaData);
+        Task<List<TarefaDTO>> GetAllTarefas();
     }
 }

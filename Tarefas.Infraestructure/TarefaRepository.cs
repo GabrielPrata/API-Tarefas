@@ -38,7 +38,19 @@ namespace Tarefas.Infraestructure
             ";
 
             await using var conn = GetOpenConnection();
-            var teste = await conn.ExecuteAsync(query, tarefaData);
+            await conn.ExecuteAsync(query, tarefaData);
+        }
+
+        public async Task<IEnumerable<TarefaModel>> GetAllTarefas()
+        {
+            const string query = @"
+                SELECT * FROM TAREFAS     
+            ";
+
+            await using var conn = GetOpenConnection();
+            var tarefasData = await conn.QueryAsync<TarefaModel>(query);
+
+            return tarefasData;
         }
 
     }

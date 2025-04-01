@@ -49,5 +49,33 @@ namespace API_Tarefas.Controllers
             }
         }
 
+        [HttpGet]
+        [Route("GetAllTarefas")]
+        [AllowAnonymous]
+        public async Task<IActionResult> GetAllTarefas()
+        {
+            try
+            {
+                var tarefas = await _tarefaService.GetAllTarefas();
+                return Ok(tarefas);
+            }
+            catch (JsonReaderException ex)
+            {
+                return BadRequest(new { message = "Erro na leitura do JSON. Verifique o formato do arquivo.", detalhes = ex.Message });
+            }
+            catch (ValidationException ex)
+            {
+                return BadRequest(new { message = "Erro de validação: ", detalhes = ex.Message });
+            }
+            catch (SqlException ex)
+            {
+                return StatusCode(500, new { message = "Ocorreu um erro com o banco de dados.", detalhes = ex.Message });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { message = "Ocorreu um erro inesperado.", detalhes = ex.Message });
+            }
+        }
+
     }
 }

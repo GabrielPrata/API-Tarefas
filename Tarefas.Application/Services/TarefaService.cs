@@ -14,6 +14,20 @@ namespace Tarefas.Application.Services
             _repository = new TarefaRepository(stringConnection);
         }
 
+        public async Task<List<TarefaDTO>> GetAllTarefas()
+        {
+            var data = await _repository.GetAllTarefas();
+
+            List<TarefaDTO> tarefasDTO = new List<TarefaDTO>();
+
+            foreach(TarefaModel tarefa in data)
+            {
+                tarefasDTO.Add(TarefaMapper.ToDTO(tarefa));
+            }
+
+            return tarefasDTO;
+        }
+
         public async Task SaveNewTarefa(TarefaDTO tarefaDTO)
         {
             TarefaModel tarefaData = TarefaMapper.ToModel(tarefaDTO);
