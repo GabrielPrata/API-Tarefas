@@ -33,7 +33,7 @@ namespace Tarefas.Domain.Models
                 throw new ValidationException("O Título deve conter no máximo 100 caracteres!");
             }
 
-            if (string.IsNullOrEmpty(Titulo))
+            if (string.IsNullOrEmpty(Titulo.Trim()))
             {
                 throw new ValidationException("O Título não pode ser vazio!");
             }
