@@ -8,5 +8,6 @@ namespace Tarefas.Application.Interfaces
     {
         Task SaveNewTarefa(TarefaDTO tarefaData);
         Task<List<TarefaDTO>> GetAllTarefas();
+        Task<TarefaDTO> GetTarefaById(int tarefaId);
     }
 }

@@ -33,5 +33,19 @@ namespace Tarefas.Application.Services
             TarefaModel tarefaData = TarefaMapper.ToModel(tarefaDTO);
             await _repository.SaveNewTarefa(tarefaData);
         }
+
+        public async Task<TarefaDTO> GetTarefaById(int tarefaId)
+        {
+            TarefaModel data = await _repository.GetTarefaById(tarefaId);
+
+            if (data == null)
+            {
+                return null;
+            }
+
+            TarefaDTO tarefasDTO = TarefaMapper.ToDTO(data);    
+
+            return tarefasDTO;
+        }
     }
 }

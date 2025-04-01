@@ -53,5 +53,17 @@ namespace Tarefas.Infraestructure
             return tarefasData;
         }
 
+        public async Task<TarefaModel?> GetTarefaById(int tarefaId)
+        {
+            const string query = @"
+                SELECT * FROM TAREFAS WHERE ID = @Id
+            ";
+
+            await using var conn = GetOpenConnection();
+            var tarefa = await conn.QuerySingleOrDefaultAsync<TarefaModel>(query, new { Id = tarefaId });
+
+            return tarefa;
+        }
+
     }
 }

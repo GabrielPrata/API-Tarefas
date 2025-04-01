@@ -41,5 +41,20 @@ namespace API_Tarefas.Controllers
 
         }
 
+        [HttpGet]
+        [Route("GetTarefaById/{tarefaId:int}")]
+        [AllowAnonymous]
+        public async Task<IActionResult> GetTarefaById([FromRoute] int tarefaId)
+        {
+            var tarefa = await _tarefaService.GetTarefaById(tarefaId);
+
+            if(tarefa == null)
+            {
+                return NoContent();
+            }
+
+            return Ok(tarefa);
+        }
+
     }
 }
