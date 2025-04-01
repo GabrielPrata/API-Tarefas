@@ -56,5 +56,23 @@ namespace API_Tarefas.Controllers
             return Ok(tarefa);
         }
 
+        [HttpDelete]
+        [Route("DeleteTarefa/{tarefaId:int}")]
+        [AllowAnonymous]
+        public async Task<IActionResult> DeleteTarefa([FromRoute] int tarefaId)
+        {
+            int deleteRealizado = await _tarefaService.DeleteTarefa(tarefaId);
+
+            if(deleteRealizado == 1)
+            {
+                return Ok(new { message = $"Tarefa ID: {tarefaId} deletada com sucesso!" });
+            }
+
+            return NotFound(new { message = $"ID: {tarefaId} não encontrado no banco de dados!" });
+        }
+
+
+       
+
     }
 }

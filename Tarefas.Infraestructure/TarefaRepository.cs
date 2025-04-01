@@ -65,5 +65,19 @@ namespace Tarefas.Infraestructure
             return tarefa;
         }
 
+        public async Task<int> DeleteTarefa(int tarefaId)
+        {
+            const string query = @"
+                DELETE FROM TAREFAS WHERE ID = @Id
+            ";
+
+            await using var conn = GetOpenConnection();
+            int deleteRealizado = await conn.ExecuteAsync(query, new { Id = tarefaId });
+
+            return deleteRealizado;
+        }
+
+       
+
     }
 }

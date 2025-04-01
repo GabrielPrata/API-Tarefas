@@ -47,5 +47,11 @@ namespace Tarefas.Application.Services
 
             return tarefasDTO;
         }
+
+        public async Task<int> DeleteTarefa(int tarefaId)
+        {
+           int deleteRealizado = await _repository.DeleteTarefa(tarefaId);
+            return deleteRealizado;
+        }
     }
 }
