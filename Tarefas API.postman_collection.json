@@ -1,0 +1,138 @@
+{
+	"info": {
+		"_postman_id": "764b91d2-9095-4a3b-a7a0-5b911f27a949",
+		"name": "Tarefas API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "13245284"
+	},
+	"item": [
+		{
+			"name": "SaveNewTask",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"titulo\": \"string\",\r\n  \"descricao\": \"string\",\r\n  \"dataConclusao\": \"2025-04-02T04:30:05.596Z\",\r\n  \"status\": \"string\" // Os valores podem ser: \"Em Progresso\", \"Pendente\" e \"Concluída\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{ApiAddress}}{{ApiSufix}}SaveNewTask",
+					"host": [
+						"{{ApiAddress}}{{ApiSufix}}SaveNewTask"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetAllTasks",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{ApiAddress}}{{ApiSufix}}GetAllTasks",
+					"host": [
+						"{{ApiAddress}}{{ApiSufix}}GetAllTasks"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetTaskById",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{ApiAddress}}{{ApiSufix}}GetTaskById/{{TaskId}}",
+					"host": [
+						"{{ApiAddress}}{{ApiSufix}}GetTaskById"
+					],
+					"path": [
+						"{{TaskId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DeleteTask",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{ApiAddress}}{{ApiSufix}}DeleteTask/{{TaskId}}",
+					"host": [
+						"{{ApiAddress}}{{ApiSufix}}DeleteTask"
+					],
+					"path": [
+						"{{TaskId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UpdateTask",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"id\": 37,\r\n  \"titulo\": \"teste\",\r\n  \"descricao\": \"teste\",\r\n  \"dataConclusao\": \"2025-04-02T04:45:15.458Z\",\r\n  \"status\": \"Concluída\" // Os valores podem ser: \"Em Progresso\", \"Pendente\" e \"Concluída\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{ApiAddress}}{{ApiSufix}}UpdateTask",
+					"host": [
+						"{{ApiAddress}}{{ApiSufix}}UpdateTask"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "ApiAddress",
+			"value": "https://localhost:55033",
+			"type": "string"
+		},
+		{
+			"key": "ApiSufix",
+			"value": "/api/Tasks/",
+			"type": "string"
+		}
+	]
+}
