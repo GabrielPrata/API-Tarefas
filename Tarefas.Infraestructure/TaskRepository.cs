@@ -5,12 +5,12 @@ using Tarefas.Domain.Models;
 
 namespace Tarefas.Infraestructure
 {
-    public class TarefaRepository
+    public class TaskRepository
     {
         private readonly string _connectionString;
         private SqlConnection _connection;
 
-        public TarefaRepository(string connectionString)
+        public TaskRepository(string connectionString)
         {
             _connectionString = connectionString;
         }
@@ -30,54 +30,64 @@ namespace Tarefas.Infraestructure
             return _connection;
         }
 
-        public async Task SaveNewTarefa(TarefaModel tarefaData)
+        public async Task SaveNewTask(TaskModel tarefaData)
         {
             const string query = @"
-                INSERT INTO TAREFAS(TITULO, DESCRICAO, DATACRIACAO, DATACONCLUSAO, STATUSID)
-                VALUES(@Titulo, @Descricao, @DataCriacao, @DataConclusao, @StatusTarefa)
+                INSERT INTO TAREFAS(TITULO, DESCRICAO, DATACRIACAO, STATUSID)
+                VALUES(@Titulo, @Descricao, @DataCriacao, 0)
             ";
 
             await using var conn = GetOpenConnection();
             await conn.ExecuteAsync(query, tarefaData);
         }
 
-        public async Task<IEnumerable<TarefaModel>> GetAllTarefas()
+        public async Task<IEnumerable<TaskModel>> GetAllTasks()
         {
             const string query = @"
                 SELECT * FROM TAREFAS     
             ";
 
             await using var conn = GetOpenConnection();
-            var tarefasData = await conn.QueryAsync<TarefaModel>(query);
-
-            return tarefasData;
+            return await conn.QueryAsync<TaskModel>(query);
         }
 
-        public async Task<TarefaModel?> GetTarefaById(int tarefaId)
+        public async Task<TaskModel?> GetTaskById(int tarefaId)
         {
             const string query = @"
                 SELECT * FROM TAREFAS WHERE ID = @Id
             ";
 
             await using var conn = GetOpenConnection();
-            var tarefa = await conn.QuerySingleOrDefaultAsync<TarefaModel>(query, new { Id = tarefaId });
-
-            return tarefa;
+            return await conn.QuerySingleOrDefaultAsync<TaskModel>(query, new { Id = tarefaId });
         }
 
-        public async Task<int> DeleteTarefa(int tarefaId)
+        public async Task<int> DeleteTask(int tarefaId)
         {
             const string query = @"
                 DELETE FROM TAREFAS WHERE ID = @Id
             ";
 
             await using var conn = GetOpenConnection();
-            int deleteRealizado = await conn.ExecuteAsync(query, new { Id = tarefaId });
-
-            return deleteRealizado;
+            return await conn.ExecuteAsync(query, new { Id = tarefaId }); ;
         }
 
-       
+        public async Task<int> UpdateTask(TaskModel tarefaModel)
+        {
+            const string query = @"
+                UPDATE TAREFAS 
+                SET STATUSID = @StatusTarefa, DATACONCLUSAO = @DataConclusao
+                WHERE ID = @Id 
+            ";
+
+            await using var conn = GetOpenConnection();
+            return await conn.ExecuteAsync(query, new
+            {
+                Id = tarefaModel.Id,
+                StatusTarefa = tarefaModel.StatusId,
+                DataConclusao = tarefaModel.DataConclusao
+            }); ;
+
+        }
 
     }
 }

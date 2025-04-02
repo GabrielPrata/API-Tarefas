@@ -1,6 +1,6 @@
 ﻿namespace Tarefas.Application.DTO
 {
-    public class TarefaDTO
+    public class TaskDTO
     {
         public int Id { get; set; }
         public string Titulo { get; set; }

@@ -2,23 +2,23 @@
 
 namespace Tarefas.Domain.Models
 {
-    public class TarefaModel
+    public class TaskModel
     {
         public int Id { get; set; }
         public string Titulo { get; set; }
         public string? Descricao { get; set; }
         public DateTime DataCriacao { get; set; }
         public DateTime? DataConclusao { get; set; }
-        public StatusTarefa StatusTarefa { get; set; }
+        public TaskStatus StatusId { get; set; }
         
-        public void AplicaValidacoes()
+        public void ApplyValidations()
         {
-            ValidaDataConclusao();
-            ValidaTitulo();
-            ValidaDescricao();
+            ValidateDataConclusao();
+            ValidateTitulo();
+            ValidateDescricao();
         }
 
-        private void ValidaDataConclusao()
+        private void ValidateDataConclusao()
         {
             if(DataConclusao.HasValue && DataConclusao < DataCriacao)
             {
@@ -26,7 +26,7 @@ namespace Tarefas.Domain.Models
             }
         }
 
-        private void ValidaTitulo()
+        private void ValidateTitulo()
         {
             if(Titulo.Length > 100)
             {
@@ -39,7 +39,7 @@ namespace Tarefas.Domain.Models
             }
         }
 
-        private void ValidaDescricao()
+        private void ValidateDescricao()
         {
             if (Descricao.Length > 255)
             {
