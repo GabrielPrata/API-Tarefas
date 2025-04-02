@@ -14,7 +14,7 @@ namespace Tarefas.Application.Mappers
                 Id = dto.Id,
                 Titulo = dto.Titulo,
                 Descricao = dto.Descricao,
-                DataCriacao = dto.DataCriacao.HasValue ? dto.DataCriacao.Value : DateTime.Now,
+                DataCriacao = DateTime.Now,
                 DataConclusao = dto.DataConclusao,
                 StatusId = ConvertStatusDTOStringToEnum(dto.Status)
             };
