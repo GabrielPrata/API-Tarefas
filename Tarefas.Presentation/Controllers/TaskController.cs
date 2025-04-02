@@ -67,7 +67,7 @@ namespace API_Tarefas.Controllers
         }
 
 
-        //Como não havia nada descrito no teste, parti do suposto que apenas a data de conclusão e o status da tarefa deveriam ser atualizados.
+        //Como não havia nada descrito no teste, parti do suposto que apenas o status da tarefa deverie ser atualizado.
         [HttpPut]
         [Route("UpdateTask")]
         [AllowAnonymous]

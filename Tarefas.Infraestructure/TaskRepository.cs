@@ -75,7 +75,7 @@ namespace Tarefas.Infraestructure
         {
             const string query = @"
                 UPDATE TAREFAS 
-                SET STATUSID = @StatusTarefa, DATACONCLUSAO = @DataConclusao
+                SET STATUSID = @StatusTarefa
                 WHERE ID = @Id 
             ";
 
@@ -84,7 +84,6 @@ namespace Tarefas.Infraestructure
             {
                 Id = tarefaModel.Id,
                 StatusTarefa = tarefaModel.StatusId,
-                DataConclusao = tarefaModel.DataConclusao
             }); ;
 
         }
