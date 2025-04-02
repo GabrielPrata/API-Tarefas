@@ -33,8 +33,8 @@ namespace Tarefas.Infraestructure
         public async Task SaveNewTask(TaskModel tarefaData)
         {
             const string query = @"
-                INSERT INTO TAREFAS(TITULO, DESCRICAO, DATACRIACAO, STATUSID)
-                VALUES(@Titulo, @Descricao, @DataCriacao, 0)
+                INSERT INTO TAREFAS(TITULO, DESCRICAO, DATACRIACAO, DATACONCLUSAO, STATUSID)
+                VALUES(@Titulo, @Descricao, @DataCriacao, @DataConclusao, 0)
             ";
 
             await using var conn = GetOpenConnection();
