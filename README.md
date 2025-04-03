@@ -33,9 +33,10 @@ Siga os passos abaixo para configurar o projeto no seu ambiente:
    Na raiz do projeto é possível encontrar o arquivo BD.sql onde há o script para a criação do banco de dados, suas tabelas e as informações necessárias para o bom funcionamento da aplicação.
 
 ## Rodando o projeto
-Após o banco de dados ter sido criado, abra o arquivo **API-Tarefas.sln** com o Visual Studio e selecione a solução Tarefas.Application como projeto de inicialização.
+Após o banco de dados ter sido criado, abra o arquivo **API-Tarefas.sln** com o Visual Studio e selecione a solução Tarefas.Application como projeto de inicialização. <br>
+Na solução **API-Tarefas.sln** edite o arquivo **appsettings.json** e edite a conexão com o banco de dados. <br>
 Clique no botão de "play" e o projeto estará funcionando
 
 ## Informações adicionais
-Link para o Front-End: https://github.com/GabrielPrata/tarefas_frontend
+Link para o Front-End: https://github.com/GabrielPrata/tarefas_frontend <br>
 Há também no diretório raiz o arquivo **Tarefas API.postman_collection.json** para ser importado no Postman para a visualização das chamadas para a API.
